@@ -209,7 +209,7 @@ eventNewPlayer = function(P)
 	tfm.exec.bindKeyboard(P, 17, true, true)
 	tfm.exec.bindKeyboard(P, 32, true, true)
 	tfm.exec.bindKeyboard(P, 27, true, true)
-	ui.addTextArea(7, '<br /><p align="center"><font color="#5ACDD5" size="20"><b>Welcome to tribe</b></font><br /><font size="26" color="#CE931D">Orion Imperium</font></p><br /><br /><font color="#DDDDDD" size="14">Say <b>!help</b> to view tribe commands</font><br /><br /><bv>~ Based on:<br /><j><tab>- Panel 3.1 (Bolodefchoco)<br /><tab>- Control Panel 8.1.1 Alpha (Squalleze)<br /><br /><bv>~ Created by:<br /><j><tab>- Bolodefchoco and Squalleze', P, 204, 34, 392, 352, 768, 768, .8, true)
+	ui.addTextArea(7, '<br /><p align="center"><font color="#5ACDD5" size="20"><b>Welcome to tribe</b></font><br /><font size="26" color="#CE931D">Orion Imperium</font></p><br /><br /><font color="#DDDDDD" size="14">Say <b>!help</b> to view tribe commands</font><br /><br /><bv>~ Based on:<br /><j><tab>- Panel 3.1 (Bolodefchoco)<br /><tab>- Control Panel 8.1.1 Alpha (Squalleze)<br /><br /><bv>~ Created by:<br /><j><tab>- Squalleze', P, 204, 34, 392, 352, 768, 768, .8, true)
 	ui.addTextArea(8, '<a href="event:help"><p align="center"><font color="#808080" size="12">Help</font></p></a>', P, 209, 333, 382, nil, 0x606060, 0x303030, .2, true)
 	ui.addTextArea(9, '<a href="event:wc"><p align="center"><font color="#808080" size="12">Close</font></p></a>', P, 209, 363, 382, nil, 0x606060, 0x303030, .2, true)
 end
