@@ -7,8 +7,8 @@ PSS = {
 	['T'] = false
 }
 PS = {
-	['Bolodefchoco'] = 5,
 	['Squalleze'] = 5,
+	['Bolodefchoco'] = 5,
 	['Kingtenso'] = 4,
 	['Miiilleenaaa'] = 4,
 	['Nedior'] = 4,
