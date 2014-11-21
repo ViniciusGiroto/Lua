@@ -1,4 +1,4 @@
--- Created by Squalleze --
+-- Created by Squalleze and Operop --
 PDB = {}
 
 PD = function(P)
@@ -15,6 +15,10 @@ eventNewPlayer = function(P)
 	tfm.exec.bindKeyboard(P, 37, false, true)
 	tfm.exec.bindKeyboard(P, 39, true, true)
 	tfm.exec.bindKeyboard(P, 39, false, true)
+	tfm.exec.bindKeyboard(P, 68, true, true)
+	tfm.exec.bindKeyboard(P, 68, false, true)
+	tfm.exec.bindKeyboard(P, 81, true, true)
+	tfm.exec.bindKeyboard(P, 81, false, true)
 end
 
 eventLoop = function(C, R)
@@ -32,13 +36,13 @@ eventLoop = function(C, R)
 end
 
 eventKeyboard = function(P, K, D, X, Y)
-	if K == 37 then
+	if K == 37 or K == 81 then
 		if D == true then
 			PDB[P].P = 'Left'
 		else
 			PDB[P].P = ''
 		end
-	elseif K == 39 then
+	elseif K == 39 or K == 68 then
 		if D == true then
 			PDB[P].P = 'Right'
 		else
