@@ -1,3 +1,4 @@
+-- Created by Squalleze --
 Xml = nil
 
 eventNewGame = function()
