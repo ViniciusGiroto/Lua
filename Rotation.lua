@@ -4,6 +4,7 @@ Nm, Ap = Maps[math.random(#Maps)], 0
 tfm.exec.disableAutoNewGame(true)
 
 eventNewGame = function()
+	Ap = 0
 	SnM()
 	for P in pairs(tfm.get.room.playerList) do
 		Ap = Ap + 1
