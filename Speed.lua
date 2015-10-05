@@ -1,6 +1,6 @@
 -- Created by Squalleze
 impulse = 25
-eventLoop = function()
+eventLoop = function(c, r)
 	for k, v in pairs(tfm.get.room.playerList) do
 		if v.movingLeft then
 			tfm.exec.movePlayer(k, 0, 0, false, - impulse, 0, true)
