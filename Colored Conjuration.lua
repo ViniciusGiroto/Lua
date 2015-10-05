@@ -1,39 +1,40 @@
--- Created by Squalleze --
-Conjurations = {}
-Color = 0x00FFFF
-Li = 0
-Time = 10
+-- Created by Squalleze
+conjs = {}
+color = 0xffbf00
+time = 10
 
-eventMouse = function(P, X, Y)
-	X_ = (X + 5) % 10
-	Y_ = (Y + 5) % 10
-	Li = Li + 1
-	Conjurations[Li] = (Time * 1000) + os.time()
-	if X_ > 5 then
-		X = X - (X_ - 10)
+eventMouse = function(p, x, y)
+	mx = (x + 5) % 10
+	my = (y + 5) % 10
+
+	if mx > 5 then
+		x = x - (mx - 10)
 	else
-		X = X - X_
+		x = x - mx
 	end
-	if Y_ > 5 then
-		Y = Y - (Y_ - 10)
+
+	if my > 5 then
+		y = y - (my - 10)
 	else
-		Y = Y - Y_
+		y = y - my
 	end
-	tfm.exec.addPhysicObject(Li, X, Y, {type = 12, color = Color, friction = .3, restitution = .2})
+
+	table.insert(conjs, (time * 1000) + os.time())
+	tfm.exec.addPhysicObject(#conjs, x, y, {type = 12, color = color, friction = .3, restitution = .2})
 end
 
-eventLoop = function(C, R)
-	for C, C_ in pairs(Conjurations) do
-		if C_ <= os.time() then
-			tfm.exec.removePhysicObject(C)
+eventLoop = function(c, r)
+	for i, v in ipairs(conjs) do
+		if v <= os.time() then
+			tfm.exec.removePhysicObject(i)
 		end
 	end
 end
 
-eventNewPlayer = function(P)
-	system.bindMouse(P, true)
+eventNewPlayer = function(p)
+	system.bindMouse(p, true)
 end
 
-for P in pairs(tfm.get.room.playerList) do
-	eventNewPlayer(P)
+for p in pairs(tfm.get.room.playerList) do
+	eventNewPlayer(p)
 end
