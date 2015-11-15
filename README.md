@@ -1,5 +1,5 @@
 Lua
 ===
-Todo o conteudo existente aqui foi criado por Squalleze e por isso deve conter seus créditos em caso de repostagem!
+Todo conteúdo aqui encontrando é foi desenvolvido por mim (Squalleze) e deve ser **creditado** em caso de **repostagem**.
 
 All right reserved
