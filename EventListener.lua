@@ -1,3 +1,4 @@
+-- Created by Squalleze --
 event = {}
 
 addEventListener = function(type, listener)
