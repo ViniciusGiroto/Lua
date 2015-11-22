@@ -1,21 +1,4 @@
 -- Created by Squalleze --
-oldprint = print
-print = function(...)
-    local out = {}
-    for k, v in pairs({...}) do
-        table.insert(out, tostring(v))
-    end
-    oldprint(table.concat(out, "\t"))
-end
-
-toFloorAll = function(t)
-    local out = {}
-    for i, v in ipairs(t) do
-        out[i] = math.floor(v)
-    end
-    return out
-end
-
 degreesToRadian = function(deg)
     return deg / (360 / (2 * math.pi))
 end
@@ -31,10 +14,15 @@ onGround = function(ground, x, y)
 
     local inside = false
     local offset = {}
-    local width = tonumber(ground.L) + collisionArea
-    local height = tonumber(ground.H) + collisionArea
+    local width = tonumber(ground.L)
+    local height = tonumber(ground.H)
     local gx = tonumber(ground.X)
     local gy = tonumber(ground.Y)
+
+    if ground.T ~= 9 then
+        width = width + collisionArea
+        height = height + collisionArea
+    end
 
     if ground.T ~= 13 then
         local angle = properties[5]
@@ -91,26 +79,6 @@ eventNewGame = function()
 
         table.insert(grounds, attr)
     end)
-
-    --## DebugMode ##--
-    tfm.exec.addPhysicObject(1, 0, 0,{type = 14, width = 10, height = 10, foreground = false, friction = .3, restitution = .2, dynamic = false, miceCollision = false, groundCollision = false})
-
-    if debugMode then
-        local j = 0
-        for l, g in pairs(grounds) do
-            local offset = ({onGround(g)})[2]
-            if g.T ~= 13 then
-                for i, v in pairs(offset) do
-                    tfm.exec.addJoint(j, 1, 1, {type = 0, point1 = table.concat(toFloorAll(v), ","), point2 = table.concat(toFloorAll(offset[(i % #offset) + 1]), ","), color = 0xFF007F, line = 1, foreground = true})
-                    j = j + 1
-                end
-            else
-                tfm.exec.addJoint(j, 1, 1, {type = 0, point1 = table.concat(toFloorAll(offset), ","), point2 = table.concat(toFloorAll({offset[1] + 1, offset[2]}), ","), color = 0x007FFF, line = g.L * 2 + collisionArea, foreground = true, alpha = .5})
-                j = j + 1
-            end
-        end
-    end
-    --## End DebugMode ##--
 end
 
 eventLoop = function(elapsedTime, remainingTime)
@@ -123,6 +91,7 @@ whenCollide = function()
     for k, v in pairs(tfm.get.room.playerList) do
         for i, g in ipairs(grounds) do
             if (g.c ~= 3 and g.c ~= 4) and (elapsedTime > 3000) then
+                tfm.exec.lowerSyncDelay(k)
                 if onGround(g, v.x, v.y) then
                     if g.T == 12 then
                         local c = tostring(g.o or ""):upper()
@@ -151,5 +120,3 @@ end
 --debug.disableEventLog(false)
 tfm.exec.newGame("@6363895")
 collisionArea = 34
---## DebugMode ##--
-debugMode = false
