@@ -1,3 +1,4 @@
+-- Created by Squalleze
 HEX2ARGB = function(hex)
     if type(hex) == "string" then
         hex = tonumber(hex, 16)
