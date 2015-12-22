@@ -1,8 +1,4 @@
 -- Created by Squalleze --
-degreesToRadian = function(deg)
-    return deg / (360 / (2 * math.pi))
-end
-
 onGround = function(ground, x, y)
     local properties = {}
     for v in string.gmatch(ground.P, '[^,]+') do
@@ -30,7 +26,7 @@ onGround = function(ground, x, y)
         local halfWidth = width / 2;
         local halfHeight = height / 2;
 
-        local rad = degreesToRadian(angle);
+        local rad = math.rad(angle);
         local cos = math.cos(rad);
         local sin = math.sin(rad);
 
