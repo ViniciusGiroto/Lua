@@ -1,6 +1,6 @@
 -- Created by Squalleze
 look = function(l)
-    local fur, acessories = l:match("(%d)(.*)")
+    local fur, acessories = l:match("(%d+)(.*)")
     local out = {tonumber(fur)}
 
     for a, b in acessories:gmatch("[;,](%d+)([_+%x]*)") do
