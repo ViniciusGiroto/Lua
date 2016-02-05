@@ -4,22 +4,13 @@ color = 0xffbf00
 time = 10
 
 eventMouse = function(p, x, y)
-	mx = (x + 5) % 10
-	my = (y + 5) % 10
-
-	if mx > 5 then
-		x = x - (mx - 10)
-	else
-		x = x - mx
-	end
-
-	if my > 5 then
-		y = y - (my - 10)
-	else
-		y = y - my
-	end
+	x = math.floor(x / 10) * 10 + 5
+	y = math.floor(y / 10) * 10 + 5
 
 	table.insert(conjs, (time * 1000) + os.time())
+	if x > 0 and y > 0 then
+		tfm.exec.addConjuration(x / 10, y / 10, 0)
+	end
 	tfm.exec.addPhysicObject(#conjs, x, y, {type = 12, color = color, friction = .3, restitution = .2})
 end
 
