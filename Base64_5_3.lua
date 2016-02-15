@@ -44,7 +44,7 @@ base64.decode = function(input)
  	local b = {}
 
 	for k in string.gmatch(input, ".") do
-  	if k ~= "" then table.insert(inChars, k) end
+  	table.insert(inChars, k)
   end
 
   for i = 1, #inChars, 4 do
