@@ -21,10 +21,10 @@ binary.decode = function(str)
 		error("Invalid binary input", 0)
 	end
 	for k in string.gmatch(str, "........") do
-		table.insert(out, string.char(tonumber(k, 2)))
+		table.insert(out, tonumber(k, 2))
   end
 
-	return table.concat(out)
+	return string.char(table.unpack(out))
 end
 
 -- Example
