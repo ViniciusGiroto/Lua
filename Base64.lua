@@ -53,10 +53,10 @@ base64.decode = function(input)
 		end
 		decoded[j] = bit32.bor(bit32.lshift(b[1], 2), bit32.rshift(b[2], 4)) % 0x100
 		j = j + 1
-    if b[3] <= 64 then
+    if b[3] < 64 then
       decoded[j] = bit32.bor(bit32.lshift(b[2], 4), bit32.rshift(b[3], 2)) % 0x100
 			j = j + 1
-      if b[4] <= 64 then
+      if b[4] < 64 then
         decoded[j] = bit32.bor(bit32.lshift(b[3], 6), b[4]) % 0x100
 				j = j + 1
 			end
