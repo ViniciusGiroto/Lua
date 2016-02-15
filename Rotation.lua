@@ -1,44 +1,31 @@
--- Created by Squalleze --
-Maps = {0, 1, 2, 3, 4, 5}
-Nm, Ap = Maps[math.random(#Maps)], 0
-tfm.exec.disableAutoNewGame(true)
+tfm.exec.disableAutoNewGame()
+maps = {0, "@6320438", "@6066061", "@5553609", "@6352283", 70}
+lastMaps = {}
+
+selectMap = function()
+	local id = math.random(1, #maps)
+
+	if #lastMaps == #maps then
+		lastMaps = {}
+	end
+
+	while (id == (nextMap or {}).id or lastMaps[id]) do
+		id = math.random(1, #maps)
+	end
+
+	return {id = id, code = maps[id]}
+end
+
+eventLoop = function(elapsedTime, remainingTime)
+	if remainingTime <= 0 or (function() local out = true for k, v in next, tfm.get.room.playerList do out = out and not v.isDead if not v.isDead then break end end return not out end)() then
+		tfm.exec.newGame(nextMap.code)
+	end
+end
 
 eventNewGame = function()
-	Ap = 0
-	SnM()
-	for P in pairs(tfm.get.room.playerList) do
-		Ap = Ap + 1
-	end
+	lastMaps[nextMap.id] = true
+	nextMap = selectMap()
 end
 
-eventPlayerRespawn = function(P)
-	Ap = Ap + 1
-end
-
-eventPlayerDied = function(P)
-	Ap = Ap - 1
-	Im(Ap)
-end
-
-eventPlayerWon = function(P)
-	Ap = Ap - 1
-	Im(Ap)
-end
-
-eventLoop = function(C, R)
-	Im(R)
-end
-
-SnM = function()
-	repeat
-		Nm = Maps[math.random(#Maps)]
-	until Nm ~= tfm.get.room.currentMap
-end
-
-Im = function(A)
-	if A < 1 then
-		tfm.exec.newGame(Nm)
-	end
-end
-
-Im(Ap)
+nextMap = selectMap()
+tfm.exec.newGame(nextMap.code)
