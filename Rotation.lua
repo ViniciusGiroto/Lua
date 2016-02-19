@@ -17,7 +17,7 @@ selectMap = function()
 end
 
 eventLoop = function(elapsedTime, remainingTime)
-	if remainingTime <= 0 or (function() local out = true for k, v in next, tfm.get.room.playerList do out = out and not v.isDead if not v.isDead then break end end return not out end)() then
+	if remainingTime <= 0 or (function() local out = true for k, v in next, tfm.get.room.playerList do out = (out and v.isDead) if not v.isDead then break end end return out end)() then
 		tfm.exec.newGame(nextMap.code)
 	end
 end
