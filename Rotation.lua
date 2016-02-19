@@ -1,3 +1,4 @@
+-- Created by Squalleze
 tfm.exec.disableAutoNewGame()
 maps = {0, "@6320438", "@6066061", "@5553609", "@6352283", 70}
 lastMaps = {}
