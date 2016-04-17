@@ -24,6 +24,28 @@ str.pad = function(input, padLength, padString, padType)
 	return out;
 end
 
+str.replace = function(input, search, replace, mode, limit)
+	limit = limit or #input
+	local out, rtype, lw, r = input, type(replace), {}, 0
+	
+	local rep = function(...)
+		r = r + 1
+		return (rtype == 'table' and ((mode ~= 2 and replace[lw[(mode or 0) + 1]] or (mode == 2 and (replace[lw[2]] or replace[lw[1]]) or '')) or '') or (rtype == 'function' and (replace(...) or '') or replace)) 
+	end
+
+	if type(search) == 'table' then
+		for i, v in ipairs(search) do
+			lw = {i, v}
+			out, total = out:gsub(v, rep, limit)
+			limit = limit - total
+		end
+	else
+		out = out:gsub(search, rep, limit)
+	end
+	
+	return out, r
+end
+
 str.shuffle = function(input)
 	local split, out = str.split(input), {};
 
