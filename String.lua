@@ -1,3 +1,4 @@
+-- Created by Squalleze
 str = string
 
 str.pad = function(input, padLength, padString, padType)
