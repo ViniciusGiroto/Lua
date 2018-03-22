@@ -1,4 +1,4 @@
--- Created by Squalleze
+-- Created by Vinicius Giroto
 math.inpolygon = function(x, y, ...)
 	local offset, inside = {...}, false
 	local j = #offset
